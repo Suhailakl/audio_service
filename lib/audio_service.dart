@@ -754,6 +754,7 @@ class AudioServiceBackground {
   /// of the task, as well as any requests by the client to play, pause and
   /// otherwise control audio playback.
   static Future<void> run(BackgroundAudioTask taskBuilder()) async {
+     Future.delayed(Duration(milliseconds: 1000)).whenComplete(() async{
     _backgroundChannel =
         const MethodChannel('ryanheise.com/audioServiceBackground');
     WidgetsFlutterBinding.ensureInitialized();
@@ -863,6 +864,7 @@ class AudioServiceBackground {
     }
     _backgroundChannel.setMethodCallHandler(null);
     _state = _noneState;
+        });
   }
 
   /// Sets the current playback state and dictates which media actions can be
